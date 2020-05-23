@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/elm-experiment-touch/favicon.ico"
   },
   {
-    "revision": "2db5fcdbc7996f6e66ad09e91fa41019",
+    "revision": "7fcf61714b588a8b7e57ab2d89a8ab27",
     "url": "/elm-experiment-touch/index.html"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/elm-experiment-touch/manifest.json"
   },
   {
-    "revision": "1d1caaff597bfba5f563",
+    "revision": "8019b19d00076c7f7e34",
     "url": "/elm-experiment-touch/static/css/main.7f457dfb.chunk.css"
   },
   {
-    "revision": "1d1caaff597bfba5f563",
-    "url": "/elm-experiment-touch/static/js/main.1d1caaff.chunk.js"
+    "revision": "8019b19d00076c7f7e34",
+    "url": "/elm-experiment-touch/static/js/main.8019b19d.chunk.js"
   },
   {
     "revision": "481da8033775ff5f42d6",
