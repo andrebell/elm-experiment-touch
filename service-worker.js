@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/elm-experiment-touch/precache-manifest.f2bdf930f866479cd8cd268981975d94.js"
+  "/elm-experiment-touch/precache-manifest.1c812a4bb7fdc30e54c1afb4858c7185.js"
 );
 
 workbox.core.skipWaiting();

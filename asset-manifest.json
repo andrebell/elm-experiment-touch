@@ -1,7 +1,7 @@
 {
   "main.css": "/elm-experiment-touch/static/css/main.7f457dfb.chunk.css",
-  "main.js": "/elm-experiment-touch/static/js/main.f3b00d9c.chunk.js",
-  "main.js.map": "/elm-experiment-touch/static/js/main.f3b00d9c.chunk.js.map",
+  "main.js": "/elm-experiment-touch/static/js/main.1d1caaff.chunk.js",
+  "main.js.map": "/elm-experiment-touch/static/js/main.1d1caaff.chunk.js.map",
   "runtime~main.js": "/elm-experiment-touch/static/js/runtime~main.481da803.js",
   "runtime~main.js.map": "/elm-experiment-touch/static/js/runtime~main.481da803.js.map",
   "vendors~main.js": "/elm-experiment-touch/static/js/vendors~main.7aa09ec8.chunk.js",
@@ -11,5 +11,5 @@
   "index.html": "/elm-experiment-touch/index.html",
   "logo.svg": "/elm-experiment-touch/logo.svg",
   "manifest.json": "/elm-experiment-touch/manifest.json",
-  "precache-manifest.f2bdf930f866479cd8cd268981975d94.js": "/elm-experiment-touch/precache-manifest.f2bdf930f866479cd8cd268981975d94.js"
+  "precache-manifest.1c812a4bb7fdc30e54c1afb4858c7185.js": "/elm-experiment-touch/precache-manifest.1c812a4bb7fdc30e54c1afb4858c7185.js"
 }
