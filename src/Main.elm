@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 import Browser
+import Browser.Events
 import Html as H exposing (Html, div, h1, img, text)
 import Html.Attributes as HA exposing (src)
 import Html.Events.Extra.Mouse as Mouse
@@ -18,13 +19,50 @@ import Tuple exposing (first, second)
 ---- CONSTANTS ----
 
 
-dt =
-    -- Time tick in ms
-    1000 / 25
+v_alpha =
+    -- Go one round (2 * pi) in 2000ms
+    2 * pi / 2000
 
 
 
 ---- MODEL ----
+
+
+type alias AnimationFrameMeta =
+    { last : Time.Posix
+    , current : Time.Posix
+    , dt_ms : Int
+    , fps : Float
+    }
+
+
+updateAnimationFrameMeta : Time.Posix -> Maybe AnimationFrameMeta -> Maybe AnimationFrameMeta
+updateAnimationFrameMeta time afmeta_ =
+    case afmeta_ of
+        Nothing ->
+            Just <| AnimationFrameMeta time time 0 0
+
+        Just afmeta ->
+            let
+                last =
+                    afmeta.current
+
+                current =
+                    time
+
+                dt_ms =
+                    Time.posixToMillis current - Time.posixToMillis last
+
+                fps =
+                    1000 / toFloat dt_ms
+            in
+            Just
+                { afmeta
+                    | last = last
+                    , current = current
+                    , dt_ms = dt_ms
+                    , fps = fps
+                }
 
 
 type alias Model =
@@ -35,6 +73,7 @@ type alias Model =
     , pm : Point
     , pu : Point
     , duration : Float
+    , afmeta : Maybe AnimationFrameMeta
     }
 
 
@@ -48,6 +87,7 @@ init =
         (Point 0 0)
         (Point 0 0)
         2000
+        Nothing
     , Cmd.none
     )
 
@@ -61,7 +101,11 @@ type Msg
     | PointerDownAt ( Float, Float )
     | PointerMoveAt ( Float, Float )
     | PointerUpAt ( Float, Float )
-    | Tick Time.Posix
+    | AnimationFrame Time.Posix
+
+
+
+--| Tick Time.Posix
 
 
 distanceTL : ( Float, Float ) -> Float
@@ -153,13 +197,15 @@ update msg model =
             , Cmd.none
             )
 
-        Tick time ->
+        AnimationFrame time ->
             let
-                d_alpha =
-                    2 * pi * dt / model.duration
-
                 newalpha =
-                    model.alpha + d_alpha
+                    case model.afmeta of
+                        Nothing ->
+                            model.alpha
+
+                        Just meta ->
+                            model.alpha + v_alpha * toFloat meta.dt_ms
 
                 newmodel =
                     { model
@@ -167,7 +213,8 @@ update msg model =
                     }
             in
             ( { newmodel
-                | rect = updateRect newmodel model.rect
+                | afmeta = updateAnimationFrameMeta time model.afmeta
+                , rect = updateRect newmodel model.rect
               }
             , Cmd.none
             )
@@ -184,7 +231,7 @@ screenToViewBox value =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ HA.attribute "style" "text-align: center" ]
         [ S.svg
             [ SA.width "400"
             , SA.viewBox "0 0 1000 1000"
@@ -252,7 +299,7 @@ view model =
 
 
 subscriptions model =
-    Time.every dt Tick
+    Browser.Events.onAnimationFrame (\time -> AnimationFrame time)
 
 
 
