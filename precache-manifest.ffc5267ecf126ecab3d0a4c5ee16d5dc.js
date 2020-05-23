@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/elm-experiment-touch/logo.svg"
   },
   {
-    "revision": "1c82903c2994c2507b385b9042bbfac5",
+    "revision": "800ab8766b5dcd7b311a92ad10e616c7",
     "url": "/elm-experiment-touch/manifest.json"
   },
   {
